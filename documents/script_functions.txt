@@ -1,0 +1,250 @@
+!CATEGORY system_info
+integer getCommandParamNum()
+
+コマンドラインのパラメータの数を取得する。
+コマンドラインのパラメータは画像の高さの次を1番目とする。
+
+
+string getCommandParam(integer index)
+
+指定したコマンドラインのパラメータを取得する。
+存在するパラメータの範囲を超えているとエラーになる。
+
+index : 取得するパラメータのインデックス
+
+integer getMaxObjectNum()
+
+配置できるオブジェクトの数の最大値を取得する。
+この最大値はビルド時に決まっている。
+
+
+!CATEGORY set_world
+void setCamera(vector pos,vector dir,vector dx,vector dy)
+
+カメラの位置と方向を設定する。
+2回以上呼び出すと、一番最後のもの以外無視される。
+通常は、dir,dx,dyは互いに直交していることが望ましい。
+
+pos : カメラの中心の位置
+dir : カメラが向いている方向
+dx  : カメラの横方向
+dy  : カメラの縦方向
+
+void setLight(vector pos,vector color)
+
+ライトの位置と色を設定する。
+2回以上呼び出すと、一番最後のもの以外無視される。
+
+pos   : ライトの中心の位置
+color : ライトの色
+
+void setBackgroundColor(vector backGroundColor)
+
+背景色を設定する。
+2回以上呼び出すと、一番最後のもの以外無視される。
+
+backGroundColor : 背景色
+
+void setTtl(integer ttl)
+
+再帰計算の回数の最大値を設定する。
+2回以上呼び出すと、一番最後のもの以外無視される。
+ttl<0のときはエラーになる。
+
+ttl : 再帰計算の回数の最大値
+
+void putSphere(vector center,number r)
+
+世界に球を配置する。
+r<=0のときはエラーになる。
+テクスチャは使用できない。
+
+center : 球の中心
+r      : 球の半径
+
+void putPlane(vector pos,vector d1,vector d2,number min1,number max1,number min2,number max2)
+
+世界に平面を配置する。
+テクスチャは、デフォルトでは左下をposの位置、右下をpos+d1の位置、左上をpos+d2の位置として貼られる。
+
+pos  : 基準点
+d1   : 平面を生成するベクトル1
+d2   : 平面を生成するベクトル2
+min1 : d1の係数の最小値(nilで設定なし)
+max1 : d1の係数の最大値(nilで設定なし)
+min2 : d2の係数の最小値(nilで設定なし)
+max2 : d2の係数の最大値(nilで設定なし)
+
+void putCylinder(vector pos,vector d,number min,number max,number r)
+
+世界に円筒を配置する。
+r<=0のときはエラーになる。
+テクスチャは、デフォルトでは横方向のみ有効で、左下をposの位置、右下をpos+dの位置として貼られる。
+
+pos : 円筒の軸の基準点
+d   : 円筒の軸の方向ベクトル
+min : dの係数の最小値(nilで設定なし)
+max : dの係数の最大値(nilで設定なし)
+r   : 円筒の半径
+
+void putDisk(vector pos,vector d1,vector d2)
+
+世界に円板を配置する。
+円板は、平面pos+s*d1+t*d2のs*s+t*t<=1の部分になる。
+テクスチャは、デフォルトでは左下をposの位置、右下をpos+d1の位置、左上をpos+d2の位置として貼られる。
+
+pos : 基準点
+d1  : 生成するベクトル1
+d2  : 生成するベクトル2
+
+void putTriangle(vector pos,vector d1,vector d2,number max1,number max2)
+
+世界に三角形の板を配置する。
+三角形の板は、平面pos+s*d1+t*d2のs>=0,t>=0,s/max1+t/max2<=1の部分になる。
+テクスチャは、デフォルトでは左下をposの位置、右下をpos+d1の位置、左上をpos+d2の位置として貼られる。
+max1またはmax2が0以下の時はエラーになる。またnilにすることはできない。
+
+pos  : 基準点
+d1   : 生成するベクトル1
+d2   : 生成するベクトル2
+max1 : d1の係数の最大値
+max2 : d2の係数の最大値
+
+void setPrevObjectColor(vector color,number alpha,number lightAlpha,number lightPower)
+
+直前に配置したオブジェクトの色を設定する。
+テクスチャの設定との併用はできない。(最後の設定が優先される)
+オブジェクトを配置していない状態で呼び出すとエラーになる。
+
+color      : オブジェクトの色
+alpha      : オブジェクトの色の強さ([0,1]の実数、1未満で反射あり、0で反射のみ)
+lightAlpha : ライトの影響の強さ([0,1]の実数、1でライトのみ)
+lightPower : Specularもどきを計算する時に何乗にするか
+
+void setPrevObjectTexture(string textureName,number alpha,number lightAlpha,number lightPower)
+
+直前に配置したオブジェクトのテクスチャを設定する。PNGファイルしか使用できない。
+色の設定との併用はできない。(最後の設定が優先される)
+alphaをnilにすると、テクスチャのアルファ値がalphaとして使用される。
+オブジェクトを配置していない状態で呼び出すとエラーになる。
+
+textureName : テクスチャのPNGファイルの名前
+alpha       : オブジェクトの色の強さ([0,1]の実数、1未満で反射あり、0で反射のみ)
+lightAlpha  : ライトの影響の強さ([0,1]の実数、1でライトのみ)
+lightPower  : Specularもどきを計算する時に何乗にするか
+
+void setPrevTextureMapping(number ox,number oy,number xx,number xy,number yx,number yy)
+
+直前に配置したテクスチャのマッピング設定をする。
+直前のオブジェクトにテクスチャを指定していない状態で呼び出すとエラーになる。
+テクスチャは左下が(0,0)、左上が(0,1)、右下が(1,0)となる。
+
+ox : (u,v)=(0,0)のときのテクスチャ上のx座標
+oy : (u,v)=(0,0)のときのテクスチャ上のy座標
+xx : (u,v)=(1,0)のときのテクスチャ上のx座標
+xy : (u,v)=(1,0)のときのテクスチャ上のy座標
+yx : (u,v)=(0,1)のときのテクスチャ上のx座標
+yy : (u,v)=(0,1)のときのテクスチャ上のy座標
+
+!CATEGORY library
+vector scalarMultiple(number a,vector b)
+
+ベクトルをスカラー倍する。
+ret=(a*b[1],a*b[2],a*b[3])
+
+a : 掛けるスカラー
+b : 掛けられるベクトル
+
+vector vectorAdd(vector a,vector b)
+
+ベクトルを足し算する。
+ret=(a[1]+b[1],a[2]+b[2],a[3]+b[3])
+
+a : 足されるベクトル
+b : 足すベクトル
+
+vector vectorSub(vector a,vector b)
+
+ベクトルを引き算する。
+ret=(a[1]-b[1],a[2]-b[2],a[3]-b[3])
+
+a : 引かれるベクトル
+b : 引くベクトル
+
+number innerProduct(vector a,vector b)
+dotProduct
+
+ベクトルの内積を求める。
+ret=a[1]*b[1]+a[2]*b[2]+a[3]+b[3]
+
+a : 左辺のベクトル
+b : 右辺のベクトル
+
+vector exteriorProduct(vector a,vector b)
+crossProduct
+outerProduct
+
+ベクトルの外積を求める。
+ret=(a[2]*b[3]-a[3]*b[2],a[3]*b[1]-a[1]*b[3],a[1]*b[2]-a[2]*b[1])
+
+a : 左辺のベクトル
+b : 右辺のベクトル
+
+vector vectorNormalize(vector a)
+
+ベクトルを正規化(正のスカラー倍して長さを1に)する。
+aの長さが0だとエラーになる。
+
+a : 正規化するベクトル
+
+number vectorLength(vector a)
+
+ベクトルの長さを求める。
+
+a : 長さを求めるベクトル
+
+vector vectorRotateXY(number angle,vector a)
+vectorRotateZaxis
+
+ベクトルをZ軸の正の向きに右ネジを進めるときに回る方向に回転する。
+
+angle : 回転する角度(ラジアン)
+a     : 回転するベクトル
+
+vector vectorRotateYZ(number angle,vector a)
+vectorRotateXaxis
+
+ベクトルをX軸の正の向きに右ネジを進めるときに回る方向に回転する。
+
+angle : 回転する角度(ラジアン)
+a     : 回転するベクトル
+
+vector vectorRotateZX(number angle,vector a)
+vectorRotateYaxis
+
+ベクトルをY軸の正の向きに右ネジを進めるときに回る方向に回転する。
+
+angle : 回転する角度(ラジアン)
+a     : 回転するベクトル
+
+vector makeColor(number r,number g,number b)
+getColor
+
+RGBの値から色のベクトルを作る。
+r,g,bはそれぞれ[0,1]である。この範囲を外れている場合は自動で修正される。
+
+r : 赤の強さ
+g : 緑の強さ
+b : 青の強さ
+
+vector makeColorFromInt(integer r,integer g,integer b)
+getColorFromInt
+
+RGBの値から色のベクトルを作る。
+r,g,bはそれぞれ[0,255]の整数である。この範囲を外れている場合は自動で修正される。
+
+r : 赤の強さ
+g : 緑の強さ
+b : 青の強さ
+
+!END

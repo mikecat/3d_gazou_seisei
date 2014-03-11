@@ -1,0 +1,6 @@
+setCamera({0,0,25},{0,1,0},{1,0,0},{0,0,1})
+setLight({20,0,50},makeColor(1,1,1))
+putSphere({0,50,20},15)
+setPrevObjectColor(makeColorFromInt(255,215,0),0.4,0.9,0.7)
+putPlane({0,0,0},{20,0,0},{0,20,0},nil,nil,nil,nil)
+setPrevObjectTexture("sirokuro.png",1,0.9,1.2)

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>setPrevObjectTexture</title>
+</head>
+<body>
+<h2>setPrevObjectTexture</h2>
+<h3>プロトタイプ</h3>
+<p><code>void&nbsp;setPrevObjectTexture(string&nbsp;textureName,number&nbsp;alpha,number&nbsp;lightAlpha,number&nbsp;lightPower)</code></p>
+<h3>概要</h3>
+<p>直前に配置したオブジェクトのテクスチャを設定する。PNGファイルしか使用できない。<br>
+色の設定との併用はできない。(最後の設定が優先される)<br>
+alphaをnilにすると、テクスチャのアルファ値がalphaとして使用される。<br>
+オブジェクトを配置していない状態で呼び出すとエラーになる。</p>
+<h3>引数</h3>
+<dl>
+<dt>textureName</dt><dd>テクスチャのPNGファイルの名前</dd>
+<dt>alpha</dt><dd>オブジェクトの色の強さ([0,1]の実数、1未満で反射あり、0で反射のみ)</dd>
+<dt>lightAlpha</dt><dd>ライトの影響の強さ([0,1]の実数、1でライトのみ)</dd>
+<dt>lightPower</dt><dd>Specularもどきを計算する時に何乗にするか</dd>
+</dl>
+</body>
+</html>

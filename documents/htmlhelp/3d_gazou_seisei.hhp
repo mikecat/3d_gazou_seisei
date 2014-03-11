@@ -1,0 +1,15 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=3d_gazou_seisei.chm
+Contents file=3d_gazou_seisei_toc.hhc
+Default topic=index.html
+Display compile progress=No
+Error log file=3d_gazou_seisei.log
+Full-text search=Yes
+Index file=3d_gazou_seisei_index.hhk
+Language=0x411 “ú–{Œê (“ú–{)
+Title=3D‰æ‘œ¶¬
+
+
+[INFOTYPES]
+

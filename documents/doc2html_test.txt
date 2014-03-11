@@ -1,0 +1,31 @@
+!CATEGORY system_info
+integer getCommandParamNum()
+
+コマンドラインのパラメータの数を取得する。
+コマンドラインのパラメータは画像の高さの次を1番目とする。
+
+
+string getCommandParam(integer index)
+
+指定したコマンドラインのパラメータを取得する。
+存在するパラメータの範囲を超えているとエラーになる。
+
+index : 取得するパラメータのインデックス
+
+integer getMaxObjectNum()
+
+配置できるオブジェクトの数の最大値を取得する。
+
+
+!CATEGORY vector
+vector exteriorProduct(vector a,vector b)
+crossProduct
+outerProduct
+
+ベクトルの外積を求める。
+ret=(a[2]*b[3]-a[3]*b[2],a[3]*b[1]-a[1]*b[3],a[1]*b[2]-a[2]*b[1])
+
+a : 左辺のベクトル
+b : 右辺のベクトル
+
+!END

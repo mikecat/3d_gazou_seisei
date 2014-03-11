@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>エラーについて</title>
+</head>
+<body>
+<h2>エラーについて</h2>
+<p>このソフト独自の関数を呼んだときに起こりうるエラーの解説です。</p>
+<dl>
+<dt>invalid&nbsp;number&nbsp;of&nbsp;arguments</dt>
+<dd>引数の数が違います。<br>
+例えば、2個の引数が必要な関数なのに1個しか指定していない場合に発生します。</dd>
+<dt>invalid&nbsp;arguments</dt>
+<dd>引数の型が違います。<br>
+例えば、vectorを渡さないといけない引数にnumberを渡している、
+vectorのつもりで要素数の違うリストを渡している、
+nilが許可されていない引数にnilを渡している、などの場合に発生します。</dd>
+<dt>invalid&nbsp;parameter(s)</dt>
+<dd>パラメータが無効です。<br>
+例えば、正の実数を指定しないといけない引数に負の実数を渡すと発生します。</dd>
+<dt>index&nbsp;out&nbsp;of&nbsp;range</dt>
+<dd>指定されたインデックスが範囲外です。<br>
+<a href="../system_info/getCommandParam.html">getCommandParam関数</a>に0以下の数や、
+<a href="../system_info/getCommandParam.html">getCommandParamNum関数</a>の戻り値より大きい数を渡すと発生します。</dd>
+<dt>too&nbsp;many&nbsp;objects</dt>
+<dd>オブジェクトが多すぎます。<br>
+<a href="../system_info/getMaxObjectNum.html">getMaxObjectNum関数</a>が返す数を超えてオブジェクトを配置しようとすると発生します。</dd>
+<dt>color&nbsp;without&nbsp;any&nbsp;objects</dt>
+<dd>オブジェクトが無いのに色を設定しようとしました。<br>
+オブジェクトを配置せずに<a href="../set_world/setPrevObjectColor.html">setPrevObjectColor関数</a>を呼び出すと発生します。</dd>
+<dt>texture&nbsp;without&nbsp;any&nbsp;objects</dt>
+<dd>オブジェクトが無いのにテクスチャを設定しようとしました。<br>
+オブジェクトを配置せずに<a href="../set_world/setPrevObjectTexture.html">setPrevObjectTexture関数</a>を呼び出すと発生します。</dd>
+<dt>texture&nbsp;load&nbsp;error</dt>
+<dd>テクスチャファイルが読み込めませんでした。<br>
+<a href="../set_world/setPrevObjectTexture.html">setPrevObjectTexture関数</a>で指定したテクスチャが存在しないか壊れています。<br>
+テクスチャの相対パスはスクリプトファイルがあるディレクトリではなく、
+exeファイルのカレントディレクトリが基準になることに注意してください。</dd>
+<dt>mapping&nbsp;without&nbsp;texture</dt>
+<dd>テクスチャが無いのにマッピングを指定しました。<br>
+直前のオブジェクトにテクスチャを指定せずに<a href="../set_world/setPrevTextureMapping.html">setPrevTextureMapping関数</a>を呼び出すと発生します。</dd>
+</dl>
+</body>
+</html>

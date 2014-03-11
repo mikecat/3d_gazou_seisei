@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=Shift_JIS">
+<title>色の計算について</title>
+</head>
+<body>
+<h2>色の計算について</h2>
+<p>このソフトでは、あるオブジェクト上の点の色は以下のように計算されます。</p>
+<ol>
+<li>ライトによる色=(Diffuseもどき+Specularもどき)/2</li>
+<li>オブジェクトの色=ライトによる色*lightAlpha+設定した色またはテクスチャの色*(1-lightAlpha)</li>
+<li>出力の色=オブジェクトの色*alpha+反射による色*(1-alpha)</li>
+</ol>
+<h3>まとめ</h3>
+<p>最初にライトによる色と生の色をlightAlphaを用いて混色し、
+その結果と反射による色をalphaを用いて混色します。<br>
+そのため、alpha=0のときは、lightAlphaの設定は意味がありません。</p>
+</body>
+</html>
